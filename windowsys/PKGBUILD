@@ -1,7 +1,7 @@
 # Maintainer: Intro <intro-iu@outlook.com>
 pkgname=windowsys
 arch=("x86_64")
-depends=("kwin" "qt6-base")
+depends=("kwin" "qt6-base" "qt6-tools" "kwindowsystem")
 makedepends=("cmake" "extra-cmake-modules" "make" "gcc" "pkgconf")
 pkgdesc=""
 pkgrel=0
