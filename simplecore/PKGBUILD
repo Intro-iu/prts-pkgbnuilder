@@ -1,0 +1,30 @@
+# Maintainer: Intro <intro-iu@outlook.com>
+pkgname=simplecore
+arch=("x86_64")
+depends=("qt6-base")
+makedepends=("cmake" "extra-cmake-modules" "make" "gcc" "pkgconf")
+pkgdesc=""
+pkgrel=0
+pkgver=0.1.0
+url="https://introve.top"
+license=("GPL")
+source=("git+https://github.com/Intro-iu/$pkgname.git")
+sha256sums=('SKIP')
+
+prepare() {
+    cd "$srcdir/$pkgname"
+    # git checkout "$pkgver-$pkgrel"
+}
+
+build() {
+    echo "Compiling $pkgname"
+    mkdir -pv "$srcdir/$pkgname/build" && cd "$srcdir/$pkgname/build"
+    cmake -DCMAKE_INSTALL_PREFIX=/usr ..
+    make -j8 || return 1
+}
+
+package() {
+    mkdir -pv "$pkgdir"
+    cd "$srcdir/$pkgname/build"
+    make DESTDIR="$pkgdir" install
+}
